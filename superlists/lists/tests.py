@@ -6,6 +6,8 @@ from django.http import HttpRequest
 
 # Create your tests here.
 #here we define our unittests
+#run and see failure behavior
+#write code and address current fail
 class HomePageTest(TestCase):
     #can we resolve a url from /
     def test_root_url_resolves_to_home_page_view(self):
@@ -15,7 +17,7 @@ class HomePageTest(TestCase):
         request = HttpRequest()
         response = home_page(request)
         html = response.content.decode('utf-8')
-        self.assertTrue(html.startswith('<html>'))
+        self.assertTrue(html.startswith('<html>')) #now resolve true
         self.assertIn('<title>To-Do lists</title>', html)
         self.assertTrue(html.endswith('</html>'))
         
