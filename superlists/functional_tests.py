@@ -27,7 +27,8 @@ import time
 #for our function
 class NewVisitorTest(unittest.TestCase):
     def setUp(self):
-        self.browser = webdriver.Firefox() 
+        self.browser = webdriver.Firefox()
+        
     def tearDown(self):
         self.browser.quit()
 
@@ -38,7 +39,7 @@ class NewVisitorTest(unittest.TestCase):
         
         #user notices page title and header with to-do list
         self.assertIn('To-Do',self.browser.title)
-        header_text = self.browser.find_element_by_tag_name('h1').text 
+        header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('To-Do',header_text)
         
         #she is prompted to enter a to-d0 item in a textbox
@@ -50,10 +51,12 @@ class NewVisitorTest(unittest.TestCase):
         #she types "buy a leather jacket"
         inputbox.send_keys('buy leather jacker')
         
+        #reminder to finish the test
         self.fail('Finish the test')
         #when she presses enter, page updates and ne list show
         inputbox.send_keys(keys.ENTER)
-        time.sleep(1)
+        
+        time.sleep(1) #explicit way to wait for page reload
         
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_element_by_tag_name('tr')
